@@ -1,10 +1,61 @@
 body{
     background-color:#FDF4F4;
     height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }
 
+.background_images{
+    width: 10%;
+    opacity: 1;
+    z-index: -1;
+    opacity:0.5;
+    position: absolute;
+}
+
+/* time{
+    background-color:#D94A38;
+    text-align: center;
+
+
+} */
+
+/* Main Layout */
+main{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+
+/* Main Display */
 #main_display{
     display: flex;
     flex-direction: column;
     height: 60vh;
+    width: 50%;
+    flex-grow: 1;
+}
+
+/* Timer Functions */
+#TimerFunctions{
+    height: inherit;
+    border:red 5px solid;
+    flex-grow: 1;
+}
+
+/* Bottom Section */
+#DisplayThemes{
+    width: 100%;
+    height: 20vh;
+    border-radius: red 5px solid;
+}
+
+#pomodoro{
+    width: 70%;
+}
+
+section{
+    border: black 3px solid;
+    margin: 5px;
 }
