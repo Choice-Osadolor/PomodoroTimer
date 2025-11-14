@@ -59,3 +59,9 @@ section{
     border: black 3px solid;
     margin: 5px;
 }
+
+input{
+    border: black 2px solid;
+    width: 3cm;
+    height: 3cm;
+}
