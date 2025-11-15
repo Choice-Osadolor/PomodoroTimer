@@ -20,13 +20,23 @@
             <img id="pomodoro" src="./assets/pomodoro_timer.png" alt="">
         </div>
 
-        </section>
+       
+    </section>
 
         <section id="TimerFunctions">
-            
-            <input id="minuteDisplay"></input>
-            <h1 id="secondDisplay"></h1>
+            <!-- get eleemnt by id ...timer. .innerText -->
+            <h1 id="timer" > 00 : 00</h1>
+
+
+            <input id="userInput" type="number" value="25" min="1" max="60" inputmode="numeric"/> :
+            <input id="userInput" type="number" value="00" min="1" max="60" inputmode="numeric"/> 
+
+            <button onclick="start()">Start time</button>
+            <button onclick="stop()">Stop time</button>
+
         </section>
+
+        
         <section id="DisplayThemes"></section>
 
     </main>
