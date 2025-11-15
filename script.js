@@ -3,32 +3,57 @@
 
 
 //set timer function
-const minuteDisplay= document.getElementById('minuteDisplay');
-const secondDisplay = document.getElementbyID('secondDisplay');
-const minutes=25;
-const seconds=0;
-const isPaused=false;
 
-function start(){
-if(!isPaused){
-seconds++
-if(seconds>60){
-  minutes++
-}
-minuteDisplay.textContent=minutes;
-}
+const timerDisplayValue=document.getElementById('timer');
+
+let minutes=25;
+let seconds=0;
+let isPaused=false;
+let isFinished=false;
+
+function updateDisplay(){
+timerDisplayValue.innerText=`${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;//display
+
 }
 
-function pause(){
-isPaused = true;
+function count(){}
+
+function countdown(){
+
+  if(minutes === 0 & seconds ===0){
+    return
+  }//if countdown stop...stop counting
+
+
+  if(!isPaused){//countdown
+if(seconds == 0){
+  seconds=59;
+  minutes--
+}else{
+  seconds--
+}
+updateDisplay();
+}
+}
+
+function stop(){
+isPaused =true;
 }
 
 function play(){
   isPaused=false;
 }
 
-setInterval(start, 1000);//every second
-setInterval(start, 60000);//every minute
+function start(){
+const minutesInput = document.getElementById("minuteInput").value;
+const secondsInput = document.getElementById("secondInput").value;
+
+  minutes=parseInt(minutesInput);//take input
+  seconds=parseInt(secondsInput);
+
+setInterval(countdown,1000);
+updateDisplay();
+}
 
 
 
