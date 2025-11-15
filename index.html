@@ -12,12 +12,12 @@
 
         <section id="timerDisplay">
 
-        <div >
+        <div id="hero">
             <!-- get eleemnt by id ...timer. .innerText -->
-            <h1 id="timer" > 00 : 00</h1>     
+            <time id="timer" style="color: white;" > 00 : 00</time>     
              <h1>Pomodoro</h1>   
-            <button onclick="play()">Play</button>
-            <button onclick="stop()">Pause</button>
+            <button onclick="play()" hidden>Play</button>
+            <button onclick="stop()" hidden>Pause</button>
 
         </div>
 
@@ -27,15 +27,15 @@
 
         <section id="TimerFunctions">
 
-            <span id="pomodoroTimerInput">
-                <h2>pomodoro</h2>
+            <span id="setPomodoroTimer">
+                <h2>Pomodoro</h2>
             <input id="minuteInput" type="number" value="25" min="1" max="60" inputmode="numeric" step="5"/> :
             <input id="secondInput" type="number" value="00" min="00" max="60" inputmode="numeric" step="10"/> 
 
             </span>
 
-            <span id="breakTimerInput">
-                <h2>Break</h2>
+            <span id="setBreakTimer">
+                <h2>Break:</h2>
             <input id="minuteInput_break" type="number" value="05" min="1" max="60" inputmode="numeric" step="1"/> :
             <input id="secondInput_break" type="number" value="00" min="00" max="60" inputmode="numeric" step="10"/> 
             </span>
@@ -44,6 +44,7 @@
             <button onclick="stop()">Stop time</button>
             <button onclick="play()">Play</button>
 
+             <!-- <svg onclick="play()" xmlns="http://www.w3.org/2000/svg" width="200" height="200"  viewBox="0 0 24 24"><path fill="none" stroke="#000000"  stroke-linejoin="round" stroke-width="1.5" d="M5.5 12V5.624c0-1.974 2.18-3.17 3.844-2.108l10 6.376c1.541.983 1.541 3.233 0 4.216l-10 6.376C7.68 21.545 5.5 20.35 5.5 18.376z"/></svg> -->
 
         </section>
 

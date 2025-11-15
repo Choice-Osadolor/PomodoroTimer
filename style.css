@@ -16,9 +16,19 @@ section{
     border: black 3px solid;
 }
 input{
-    border: black 2px solid;
-    width: 30%;
-    height:30%;
+    width: 2em;
+    height:2em;
+    font-size: larger;
+    text-align: center;
+
+/* problem, its not allign to the center and im stuppborn to connect the two inputs inside a container */
+
+}
+h1,time{
+    color: #7F8330;
+    font-weight: lighter;
+    font-size:4em;
+    text-align: center;
 }
 
 /* Main Layout */
@@ -33,9 +43,25 @@ main{
 
 
 /* Timer Display */
+#hero{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#hero>button{
+position: static;
+}
 #timer{
     background-color:#D94A38;
     text-align: center;
+    width: 40%;
+    align-self: center;
+}
+time{
+    border-radius: 50em;
+    border: #6750A4 solid 1px;
 }
 h1{
     font-family: italiana;
@@ -56,6 +82,7 @@ h1{
 
 
 
+
 /* Timer Functions */
 #TimerFunctions{
     display: flex;
@@ -65,6 +92,54 @@ h1{
     flex-grow: 1;
     flex-shrink: 1;
     background-color: white;
+}
+
+button{
+    height:10em;
+    width: 10em;
+}
+
+
+
+
+
+/* FIX THIS ENTIRE SECTIOn TOMMOROW */
+#setBreakTimer,
+#setPomodoroTimer{
+    height: 10em;
+    width: 10em;
+    border:black 1px solid;
+
+    display: flex;
+    flex-wrap: wrap;
+/* Dont be scare dby all this extra code, i am simply trying to allign the two time 
+functions without putting them in yet another container, Track this back to the input{} at the top of css document */
+justify-content: center;
+h2{
+    width: 100%;
+}
+}
+
+#setPomodoroTimer{
+    border-radius: 100%;
+    background-color: #D94A38;
+    border: transparent;
+}
+#setBreakTimer{
+background-color: rgba(127, 131, 48, 0.3); /* 0.6 = 60% opacity */
+border: #7F8330 2px solid;
+
+h2{
+    background-color:#7F8330;
+}
+}
+
+h2{
+    color: white;
+    background-color: inherit;
+    border-radius:10px;
+    align-self: center;
+    padding: 5%;
 }
 
 
