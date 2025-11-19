@@ -9,7 +9,7 @@ const timerDisplayValue=document.getElementById('timer');
 let minutes=25;
 let seconds=0;
 let isPaused=false;
-let isFinished=false;
+let currentTimer;
 
 function updateDisplay(){
 timerDisplayValue.innerText=`${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;//display
@@ -45,14 +45,14 @@ function play(){
 }
 
 function start(){
+  clearInterval(currentTimer);
 const minutesInput = document.getElementById("minuteInput").value;
 const secondsInput = document.getElementById("secondInput").value;
 
   minutes=parseInt(minutesInput);//take input
   seconds=parseInt(secondsInput);
-
-setInterval(countdown,1000);
 updateDisplay();
+currentTimer=setInterval(countdown,1000);
 }
 
 

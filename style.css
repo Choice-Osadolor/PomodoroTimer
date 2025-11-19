@@ -152,7 +152,7 @@ span{
     display: inline;
 }
 
-@media(max-width:800px){
+@media(max-width:400px){
 #TimerFunctions{
     width: 100%;
     flex-direction: row;
