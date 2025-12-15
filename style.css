@@ -1,19 +1,39 @@
 @import url(https://fonts.googleapis.com/css?family=Italiana:regular);
+
+
+/* Variables */
+
+:root{
+    --red:#D94A38;
+    --lemon_yellow:var(#FFD307);
+    --tomato-green:var(--tomato-green);
+    
+}
+
+                                          /* General Style/Layout */
 body{
     background-color:#FDF4F4;
-    height: 100vh;
+    height: auto;
     width: 100vw;
     overflow-x: hidden;
+}
+section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
 }
 .background_images{
     width: 10%;
     opacity: 1;
-    z-index: -1;
-    opacity:0.5;
-    position: absolute;
+    z-index: -3;
+    opacity:0.3;
 }
-section{
-    border: black 3px solid;
+h1{
+    margin-top: 5%;
+    font-family: italiana;
 }
 input{
     width: 2em;
@@ -24,18 +44,9 @@ input{
 /* problem, its not allign to the center and im stuppborn to connect the two inputs inside a container */
 
 }
-h1,time{
-    color: #7F8330;
-    font-weight: lighter;
-    font-size:4em;
-    text-align: center;
-}
-
-/* Main Layout */
 main{
     display: flex;
     flex-wrap: wrap;
-    flex-basis: auto;
 
     width: 100%;
     height: 70vh;
@@ -44,9 +55,6 @@ main{
 
 /* Timer Display */
 #hero{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
 }
@@ -54,30 +62,34 @@ main{
 position: static;
 }
 #timer{
-    background-color:#D94A38;
+    background-color:var(--red);
     text-align: center;
-    width: 40%;
+    width: 100%;
+    color: white;
     align-self: center;
+    padding-left: 20%;
+    padding-right: 20%;
+    transition: 1s;
 }
-time{
-    border-radius: 50em;
-    border: #6750A4 solid 1px;
-}
-h1{
-    font-family: italiana;
-}
+
 #pomodoro{
-    width: auto;
     height: 60%;
+    width: auto;
+    position: relative; 
+    z-index: 3;
 }
 #timerDisplay{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: stretch;
-    width: 70%;
+    width: 60%;
     flex-grow: 1;
     flex-shrink: 1;
+}
+h1,time{
+    border-radius: 50em;
+    color: #7F8330;
+    font-weight: lighter;
+    font-size:4em;
+    text-align: center;
+    text-wrap: nowrap;
 }
 
 
@@ -91,12 +103,22 @@ h1{
     width: 20%;
     flex-grow: 1;
     flex-shrink: 1;
-    background-color: white;
 }
 
 button{
     height:10em;
     width: 10em;
+}
+#pause,#play{
+    display: none;
+    cursor: pointer;
+    height: 30%;
+    
+}
+#start{
+    display: block;
+    cursor: pointer;
+    height: 30%;
 }
 
 
@@ -152,9 +174,15 @@ span{
     display: inline;
 }
 
-@media(max-width:400px){
+@media(max-width:600px){
 #TimerFunctions{
     width: 100%;
     flex-direction: row;
+}
+
+.background_images{
+    width: 30%;
+    opacity: 1;
+    opacity:0.3;
 }
 }
