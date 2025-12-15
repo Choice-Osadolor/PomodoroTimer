@@ -2,34 +2,51 @@
 const timerDisplayValue=document.getElementById('timer');
 const animationsContainer=document.body;
 
+
 let minutes;
 let seconds;
 
 let isPaused=false;
-let work_session=false;
+let work_session=false;// if worksession is false then a break section is active
+let isFinished=false;//entire session is finished
+let isActive=false;//session is active
 
 let currentTimer;
 let pomodoro_count=0;
 
 function pause(){
 isPaused =true;
+toggleicons();
 
 //change display
 }
 
 function play(){
   isPaused=false;
+  toggleicons();
 //change display
 }
 
 function stop(){
+  const minutesInput = document.getElementById("minuteInput").value;
+  const secondsInput = document.getElementById("secondInput").value;
+  isFinished=true;
+  isActive=false;
+
   clearInterval(currentTimer);
+  minutes=parseInt(minutesInput);//take input
+  seconds=parseInt(secondsInput);
+  idleDisplay();
+  toggleicons();
+  updateDisplay();
 
 }
 
 function restart(){
+  isPaused=false;
+  isActive=true;
+  toggleicons();
     clearInterval(currentTimer);
-    start();
 
 }
 
@@ -46,11 +63,21 @@ function start(){
     minutes=0;
     seconds=0;
   }
+
+  
   work_session=true;
   pomodoro_count=0;
   isPaused=false;
+  isActive=true;
 
-activeDisplay();
+  
+if(isActive){
+  activeDisplay();
+}else {
+  idleDisplay();
+  
+}
+toggleicons();
 updateDisplay();
 currentTimer=setInterval(pomodoro,1000);
 
@@ -59,6 +86,7 @@ currentTimer=setInterval(pomodoro,1000);
 
 function updateDisplay(){
 timerDisplayValue.innerText=`${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;//display
+
 
 }
 
@@ -71,10 +99,16 @@ const secondsInput = parseInt(document.getElementById("secondInput").value);
 
   if(minutes === 0 && seconds === 0){
     setTimeout(pomodoro,10000);
-    alert_sound.currentTime=0;
+    alert_sound.currentTime=0.3;
     alert_sound.play();
     if(work_session){
       pomodoro_count++;
+        if(pomodoro_count===3){
+        stop();
+        alert('session is over, well done!!');
+        pomodoro_count=0;
+        return;
+  }
       minutes=minuteInputBreak;
       seconds=secondInputBreak;
       work_session=false;
@@ -84,6 +118,7 @@ const secondsInput = parseInt(document.getElementById("secondInput").value);
       work_session=true;
       
     }
+    
     updateDisplay();
     return;
   }//if countdown stop...stop counting
@@ -103,7 +138,7 @@ updateDisplay();
 
 // Notification
 const alert_sound = new Audio('notification.mp3');
-alert_sound.preload;
+alert_sound.preload='auto';
 
 
 
@@ -111,6 +146,7 @@ alert_sound.preload;
 function activeDisplay() {
   document.getElementById('timer').style.backgroundColor = '#7F8330';
   document.getElementById('timer').style.transition='1s ease-in-out';
+  
 
   // select all tomato images
   const images = document.querySelectorAll('.background_images');
@@ -124,43 +160,76 @@ function activeDisplay() {
 
   });
 }
+function idleDisplay(){
+    const activeImages = document.querySelectorAll('.background_images');
+    activeImages.forEach(img=>img.remove());
 
-// Background images
 for(let i=0; i<10; i++){
+
 const images =document.createElement('img');
 images.className = 'background_images';
 images.src='./assets/tomato_noBG.png';
-
 
 const rect = images.getBoundingClientRect();
 
   images.style.top = Math.random() * window.innerHeight + 'px';
   images.style.left = Math.random() * window.innerWidth + 'px';
   images.style.position='absolute';
+  images.style.animation='none';
 
 
 animationsContainer.appendChild(images); 
 }
 
+}
+
+// //toggle play and pause 
+// function toggleicons(){
+//   const start_button = document.getElementById('start');
+//   const play_button  = document.getElementById('play');
+//   const pause_button = document.getElementById('pause');
+
+//   if (!isActive) {
+//     // Timer not running → show Start
+//     start_button.style.display = 'block';
+//     pause_button.style.display = 'none';
+//     play_button.style.display  = 'none';
+//     return;
+//   }
+
+//   if (isPaused) {
+//     // Timer paused → show Play
+//     start_button.style.display = 'none';
+//     pause_button.style.display = 'none';
+//     play_button.style.display  = 'block';
+//   } else {
+//     // Timer running → show Pause
+//     start_button.style.display = 'none';
+//     pause_button.style.display = 'block';
+//     play_button.style.display  = 'none';
+//   }
+// }
+
+
 //toggle play and pause 
-function toggleicons(){
- const start_button=document.getElementById('start');
- const play_button= document.getElementById('play');
- const pause_button = document.getElementById('pause');
+function toggleicons(){ 
+  const start_button=document.getElementById('start'); 
+  const play_button= document.getElementById('play'); 
+  const pause_button = document.getElementById('pause'); 
+  if(start_button.style.display==='block' || start_button.style.display==='')
+    { start_button.style.display='none'; 
+      pause_button.style.display='block'; 
+      play_button.style.display='none'; 
+      return; } 
+      if(pause_button.style.display==='block')
+        { pause_button.style.display='none'; 
+          play_button.style.display='block'; }
+          else{ play_button.style.display='none'; 
+            pause_button.style.display='block'; } }
 
- if(start_button.style.display==='block' || start_button.style.display===''){
-  start_button.style.display='none';
-  pause_button.style.display='block';
-  play_button.style.display='none';
-  return;
- }
- 
-if(pause_button.style.display==='block'){
-  pause_button.style.display='none';
-  play_button.style.display='block';
-}else{
-  play_button.style.display='none';
-  pause_button.style.display='block';
-}
 
-}
+                                             //function calls
+idleDisplay();
+
+
+
