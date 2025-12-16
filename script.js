@@ -35,6 +35,7 @@ toggleicons();
 
 function play(){
   isPaused=false;
+  activeDisplay();
   toggleicons();
 //change display
 }
@@ -59,7 +60,9 @@ function restart(){
   isActive=true;
   pomodoro_count=0;
   toggleicons();
+  currentTimer = setInterval(pomodoro, 1000);
     clearInterval(currentTimer);
+
 
 }
 
@@ -110,16 +113,19 @@ const secondInputBreak= parseInt(document.getElementById('secondInput_break').va
 const minutesInput = parseInt(document.getElementById("minuteInput").value);
 const secondsInput = parseInt(document.getElementById("secondInput").value);
 
+const minuteInputLong = parseInt(document.getElementById('minuteInput_long').value);
+const secondInputLong= parseInt(document.getElementById('secondInput_long').value);
+
 
   if(minutes === 0 && seconds === 0){
-    alert_sound.currentTime=0.3;
+    alert_sound.currentTime=0;
     alert_sound.play();
     
   if(work_session){// POMODORO SESSION FINISH
       pomodoro_count++;
-pomodoroAnimations();
+pomodoroAnimations(theme);
 
-        if(pomodoro_count===5){// 6 Pomodoros= 1 session, this is whne we naturally finish a session 
+        if(pomodoro_count===4){// 3 Pomodoros= 1 session, this is whne we naturally finish a session 
         stop();
         alert('session is over, well done!!');
         pomodoro_count=0;
@@ -128,9 +134,10 @@ pomodoroAnimations();
 
   
     if(pomodoro_count==2){// LONG BREAK// normal break=5 mins, If we are one 3rd pomodoro, break=10 mins
-    minutes=15;
-    seconds=0;
+    minutes=minuteInputLong;
+    seconds=secondInputLong;
           document.getElementById('session_name').textContent='Long-Break';
+    work_session=false
 
     }else{
       minutes=minuteInputBreak;
@@ -172,7 +179,8 @@ alert_sound.preload='auto';
 
 function activeDisplay() {
   document.getElementById('timer').style.backgroundColor = '#7F8330';
-  document.getElementById('timer').style.transition='1s ease-in-out';
+  document.getElementById('timer').style.color='white';
+  document.getElementById('timer').style.transition='0.1s ease-in-out';
   
 
   // select all tomato images
@@ -211,41 +219,57 @@ animationsContainer.appendChild(images);
 }
 
 }
-function switchDisplay(theme){
+function switchDisplay(newTheme){
+  theme=newTheme;
     let pomodoro=document.querySelector('#pomodoro');
     let timer=document.querySelector('#timer');
     let icons=document.querySelectorAll('.icons');
     let images= document.querySelectorAll('.background_images');
-      images.forEach(img => {
-  img.src = './assets/lemon_bg.png';
-});
+  images.forEach(img => {
+    img.src = newTheme === 'lemon'
+      ? './assets/lemon_bg.png'
+      : './assets/apple_bg.png';
+  });
     
   
   //get the color red, or we can do a toggle, where depending on input it toggles to its red, or whatever
-if(theme=='lemon'){
+if(newTheme==='lemon'){
+  theme='lemon';
   pomodoro.src='/assets/lemon.png';
   document.body.style.backgroundColor='#C5F0FF';
-  document.body.style.color='#247453';
-  timer.style.backgroundColor='#247453';
-  icons.style.backgroundColor='#FFD307';
+  timer.style.transition='none';
 
+  timer.style.backgroundColor='#ffd307';
+  document.getElementById('start').style.fill='#FFD307';
+
+  document.getElementById('session_name').style.color='#247453';
+  timer.style.color='#247453';
+  document.body.style.color='#247453';
 
 }
-if(theme=='apple'){
+if(newTheme==='apple'){
+  theme='apple';
   pomodoro.src='/assets/apple.png';
   document.body.style.backgroundColor='#FFFFDD';
-  document.body.style.color='#AA0000'
-    timer.style.backgroundColor='#AA0000';
+  timer.style.color='#ffffff';
+  timer.style.backgroundColor='#AA0000';
 
+document.body.style.color='#AA0000'
+document.getElementById('session_name').style.color='#aa0000';
 document.getElementById('start').style.fill='#AA0000';
 }
 }
 
-function pomodoroAnimations(){
-    const pomodoro=document.getElementById('pomodoro')
+function pomodoroAnimations(currentTheme){
+    const pomodoro=document.getElementById('pomodoro');
 
 if(pomodoro_count&& pomodoro_count>0 &&pomodoro_count<appleAnimation.length){
-     pomodoro.src=appleAnimation[pomodoro_count];
+      if(currentTheme=='apple'){
+           pomodoro.src=appleAnimation[pomodoro_count];
+    }
+    if(currentTheme=='lemon'){
+          pomodoro.src=lemonAnimation[pomodoro_count];
+    }
 }
 }
 
