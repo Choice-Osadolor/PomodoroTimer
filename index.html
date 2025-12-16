@@ -13,16 +13,17 @@
 
         <section id="timerDisplay">
 
-        <div id="hero">
+        <div id="hero" draggable="true">
             <!-- get eleemnt by id ...timer. .innerText -->
             <time id="timer"> 00 : 00</time>     
-             <h1>Pomodoro</h1>   
+             <h1 id="session_name">Pomodoro</h1>   
         </div>
-           <svg id="start" onclick="start();" width="110" height="110" viewBox="0 0 133 131" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M29.1665 16.375L110.833 65.5L29.1665 114.625V16.375Z" stroke="#7F8330" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-           <svg id="pause" onclick="pause();" width="110" height="110" viewBox="0 0 114 106" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M66.5 83.9167V22.0833H85.5V83.9167H66.5ZM28.5 83.9167V22.0833H47.5V83.9167H28.5Z" fill="#7F8330"/></svg>
-           <svg  id="play" onclick="play();" xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 20 20"><path fill="#7F8330" d="M4.55 19A1 1 0 0 1 3 18.13V1.87A1 1 0 0 1 4.55 1l12.2 8.13a1 1 0 0 1 0 1.7z"/></svg>
-
-            <img id="pomodoro" src="./assets/pomodoro_timer.png" alt="">
+           <svg id="start" class="icons" onclick="start();" width="110" height="110" viewBox="0 0 133 131" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M29.1665 16.375L110.833 65.5L29.1665 114.625V16.375Z" stroke="#7F8330" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+           <svg id="pause" class="icons" onclick="pause();" width="110" height="110" viewBox="0 0 114 106" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M66.5 83.9167V22.0833H85.5V83.9167H66.5ZM28.5 83.9167V22.0833H47.5V83.9167H28.5Z" fill="#7F8330"/></svg>
+           <svg  id="play" class="icons" onclick="play();" xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 20 20"><path fill="#7F8330" d="M4.55 19A1 1 0 0 1 3 18.13V1.87A1 1 0 0 1 4.55 1l12.2 8.13a1 1 0 0 1 0 1.7z"/></svg>
+<div id="pomodoro_wrapper"> 
+                <img id="pomodoro" src="./assets/pomodoro_timer.png" alt="">
+</div>
        
     </section>
 
@@ -37,7 +38,7 @@
 
             <span id="setBreakTimer">
                 <h2>Break:</h2>
-            <input id="minuteInput_break" type="number" value="05" min="1" max="60" inputmode="numeric" step="1"/> :
+            <input id="minuteInput_break" type="number" value="5" min="1" max="60" inputmode="numeric" step="1"/> :
             <input id="secondInput_break" type="number" value="00" min="00" max="60" inputmode="numeric" step="10"/> 
             </span>
 
@@ -47,11 +48,61 @@
              <!-- <svg onclick="play()" xmlns="http://www.w3.org/2000/svg" width="200" height="200"  viewBox="0 0 24 24"><path fill="none" stroke="#000000"  stroke-linejoin="round" stroke-width="1.5" d="M5.5 12V5.624c0-1.974 2.18-3.17 3.844-2.108l10 6.376c1.541.983 1.541 3.233 0 4.216l-10 6.376C7.68 21.545 5.5 20.35 5.5 18.376z"/></svg> -->
 
         </section>
+
+        
    
-        <section id="DisplayThemes"></section>
+        <section id="DisplayThemes">
+            <button onclick="switchDisplay('pomodoro');">Pomodoro</button>
+            <button onclick="switchDisplay('lemon');">Lemon theme</button>
+            <button onclick="switchDisplay('apple')"> Apple theme</button>
+        </section>
 
 </main>
-
     <script src="script.js"></script>
+    <!-- <script>
+// Make the DIV element draggable:
+dragElement(document.getElementById("pomodoro"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+    </script> -->
 </body>
 </html>

@@ -2,7 +2,7 @@
 const timerDisplayValue=document.getElementById('timer');
 const animationsContainer=document.body;
 let appleAnimation=[
-    '../assets/apple1.png',
+    '../assetsapple1.png',
     '../assets/apple2.png',
     '../assets/apple3.png',
     '../assets/apple4.png'
@@ -13,7 +13,36 @@ let lemonAnimation=[
     '../assets/lemon3.png',
     '../assets/lemon4.png'
 ]
-let theme='pomodoro';
+const themes = {
+  pomodoro: {
+    pomodoroImg: '../assets/pomodoro_timer.png',
+    pomodoroBG:'../assets/tomato_noBG.png',
+    backgroundColor: '#ffffff',
+    textColor: '#000000',
+    timerColor: '#7F8330',
+    iconColor: '#7F8330',
+    animation: null
+  },
+  apple: {
+    pomodoroImg: '../assets/apple.png',
+    pomodoroBG:'../assets/apple_bg.png',
+    backgroundColor: '#FFFFDD',
+    textColor: '#AA0000',
+    timerColor: '#AA0000',
+    iconColor: '#AA0000',
+    animation: appleAnimation
+  },
+  lemon: {
+    pomodoroImg: '../assets/lemon.png',
+    pomodoroBG:'../assets/lemon_bg.png',
+    backgroundColor: '#C5F0FF',
+    textColor: '#247453',
+    timerColor: '#247453',
+    iconColor: '#FFD307',
+    animation: lemonAnimation
+  }
+};
+let theme='pomodoro'
 
 let minutes;
 let seconds;
@@ -25,6 +54,7 @@ let isActive=false;//session is active
 
 let currentTimer;
 let pomodoro_count=0;
+
 
 function pause(){
 isPaused =true;
@@ -57,7 +87,6 @@ function stop(){
 function restart(){
   isPaused=false;
   isActive=true;
-  pomodoro_count=0;
   toggleicons();
     clearInterval(currentTimer);
 
@@ -117,9 +146,9 @@ const secondsInput = parseInt(document.getElementById("secondInput").value);
     
   if(work_session){// POMODORO SESSION FINISH
       pomodoro_count++;
-pomodoroAnimations();
-
-        if(pomodoro_count===5){// 6 Pomodoros= 1 session, this is whne we naturally finish a session 
+      pomodoroAnimations(theme);
+      
+        if(pomodoro_count===4){// 6 Pomodoros= 1 session, this is whne we naturally finish a session 
         stop();
         alert('session is over, well done!!');
         pomodoro_count=0;
@@ -128,8 +157,8 @@ pomodoroAnimations();
 
   
     if(pomodoro_count==2){// LONG BREAK// normal break=5 mins, If we are one 3rd pomodoro, break=10 mins
-    minutes=15;
-    seconds=0;
+    minutes=0;
+    seconds=3;
           document.getElementById('session_name').textContent='Long-Break';
 
     }else{
@@ -138,7 +167,6 @@ pomodoroAnimations();
       document.getElementById('session_name').textContent='Break';
       work_session=false;
     }
-
   }else{
         document.getElementById('session_name').textContent='Pomodoro';
       minutes=minutesInput;
@@ -211,43 +239,37 @@ animationsContainer.appendChild(images);
 }
 
 }
-function switchDisplay(theme){
-    let pomodoro=document.querySelector('#pomodoro');
-    let timer=document.querySelector('#timer');
-    let icons=document.querySelectorAll('.icons');
-    let images= document.querySelectorAll('.background_images');
-      images.forEach(img => {
-  img.src = './assets/lemon_bg.png';
-});
-    
+function switchDisplay(currentTheme){
+  const theme=themes[currentTheme];
+  const icons = document.querySelectorAll('.icons');
+
+document.querySelector('#pomodoro').src=theme.pomodoroImg;
+document.querySelector('#timer').style.color = theme.timerColor;
+
+document.body.style.backgroundColor=theme.backgroundColor;
+document.body.style.color=theme.textColor;
+
+icons.forEach(icon => icon.style.fill = themeData.iconColor || themeData.iconColor);
+
   
-  //get the color red, or we can do a toggle, where depending on input it toggles to its red, or whatever
-if(theme=='lemon'){
-  pomodoro.src='/assets/lemon.png';
-  document.body.style.backgroundColor='#C5F0FF';
-  document.body.style.color='#247453';
-  timer.style.backgroundColor='#247453';
-  icons.style.backgroundColor='#FFD307';
-
-
-}
-if(theme=='apple'){
-  pomodoro.src='/assets/apple.png';
-  document.body.style.backgroundColor='#FFFFDD';
-  document.body.style.color='#AA0000'
-    timer.style.backgroundColor='#AA0000';
-
-document.getElementById('start').style.fill='#AA0000';
+if(isActive){
+  pomodoroAnimations();
 }
 }
 
 function pomodoroAnimations(){
     const pomodoro=document.getElementById('pomodoro')
+    let theme=themes[theme];
 
-if(pomodoro_count&& pomodoro_count>0 &&pomodoro_count<appleAnimation.length){
-     pomodoro.src=appleAnimation[pomodoro_count];
+    if(theme.animation){
+     pomodoro.src=theme.animation[pomodoro_count];
+    }else{
+       pomodoro.src=theme.pomodoroImg;
+
+    }
+
 }
-}
+
 
 //toggle play and pause 
 function toggleicons(){
@@ -296,6 +318,7 @@ function toggleicons(){
 
                                              //function calls
 idleDisplay();
+// pomodoroAnimations();
 
 
 
