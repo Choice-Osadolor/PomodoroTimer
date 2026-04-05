@@ -1,0 +1,307 @@
+@import url(https://fonts.googleapis.com/css?family=Delicious+Handrawn:regular);
+
+/* Variables */
+
+:root{
+    --red:#D94A38;
+    --lemon_yellow:var(#FFD307);
+    --tomato-green:var(--tomato-green);
+    
+}
+
+                                          /* General Style/Layout */
+body{
+    background-color:#FDF4F4;
+    width: 100vw;
+    overflow-x: hidden;
+
+}
+
+section{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+h1,h2,h3{
+    margin-top: 5%;
+    font-family: Delicious Handrawn;
+}
+h3{
+    font-size: 2em;
+}
+p{
+    font-family: Delicious Handrawn;
+    font-size: 1.5em;
+    text-align: center;
+}
+nav{
+    justify-content: flex-end;
+    width: 100%;
+    height: 2em;
+}
+
+
+/* Flexbox Classes */
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+
+
+                                    /* Main Display */
+
+main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+
+    background-repeat: repeat;
+    background-size:70%;
+    background-image: url('/assets/defaulttheme/tomatoBG.png');
+
+}
+
+#mainDisplay{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1000px;
+    width: 100%;
+}
+
+#session-timer{
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+#session-timer time{
+    background-color: #AA0000;
+    color: white;
+    width: 60%;
+
+    padding: 3%;
+    border-radius: 2em;
+
+    font-size: 10vw;
+    font-family: Delicious Handrawn;
+}
+
+#session_name{
+    color: #70000E;
+    font-size: 14vw;
+    font-weight: lighter;
+    margin: 0%;
+}
+
+#pomodoro-container{
+    justify-content: center;
+    height: 100%;
+    
+}
+
+#pomodoro{
+    height: 100%;
+    width: 100%;
+    align-self: center;
+}
+
+#start-btn{
+    font-family: Delicious Handrawn;
+    border: none;
+    width: 20%;
+    height: 30%;
+    margin: 3%;
+    text-align: center;
+    font-size: 4vw;
+    padding: 2%;
+    border-radius: 30em;
+    background-color: lightgray;
+}
+
+#session-timer,
+#pomodoro-container{
+    flex: 1 1 300px; /* THIS is the magic */
+}
+
+.icons{
+    cursor: pointer;
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+                                /* Themes Selection Section */
+.theme{
+    color: white;
+    border: black 1px solid;
+    padding: 2.5%;
+    padding-top: 1%;
+    display: flex;
+    flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 25%;
+}
+
+.theme article{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.theme>img{
+    border: black 1px solid;
+    width: 100%;
+    height: 90%;
+    background-color: white;
+}
+
+
+.theme button{
+    position: absolute;
+    bottom: -7%;
+    background-color: transparent;
+    border: none;
+}
+
+.theme button img{
+    width: 7em;
+}
+
+                                /* Timer Settings */
+
+#timer_settings{
+    position: absolute;
+    visibility: hidden;
+    height: 80vh;
+    width: 80%;
+    border: white 10px solid;
+    outline: black 3px solid;
+    background-color: rgba(36, 116, 83, 0.3);    
+    border-radius: 50px;
+    padding: 1em;
+
+    justify-self: center;
+    align-self: center;
+}
+
+#timer_settings.active{
+    visibility: visible;
+}
+
+article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+h3{
+    padding: 0%;
+    margin: 0%;
+}
+}
+#setting_overview{
+    justify-content: space-between;
+    height: 55%;
+    width: 100%;
+
+    background-color: #FEFAEE;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+
+#setting_controls{
+        flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: space-evenly;
+
+    height: 45%;
+    background-color: white;
+    width: 100%;
+
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+}
+
+#setting_controls span{
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    width: 30%;
+    height: 70%;
+
+    border: black 1px solid;
+    border-radius: 50px;
+    width: 30%;
+}
+
+#setting_controls h3{
+    font-family: Delicious Handrawn;
+    width: 100%;
+    text-align: center;
+}
+
+#setting_controls p{
+font-size: xx-large;
+padding: 0%;
+margin: 0%;
+}
+
+#setting_controls button{
+    width: 2em;
+    height:2em;
+    font-size: larger;
+    text-align: center;
+
+}
+#start-time{
+    font-size: 5em;
+    background-color: white;
+    border: black 4px solid;
+    border-right: 0px solid;
+
+    border-radius: 30px;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+
+
+
+
+
+
+
+/* Mobile views */
+@media(max-width:600px){
+
+/* Swap the order of elements */
+#pomodoro-container{
+    order: 2;
+}
+}
