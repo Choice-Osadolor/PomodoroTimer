@@ -15,7 +15,7 @@
 
         <section id="mainDisplay" class="flex-row">
           <nav class="flex-row">
-              <button id="settings-btn">Settings</button>
+              <button class="settings-btn">Settings</button>
               <button id="restart-btn">Restart</button>
               <svg class="icons"  id="play-btn" class="icons" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 20 20"><path fill="#7F8330" d="M4.55 19A1 1 0 0 1 3 18.13V1.87A1 1 0 0 1 4.55 1l12.2 8.13a1 1 0 0 1 0 1.7z"/></svg> -->
               <svg class="icons" id="pause-btn" class="icons" width="80" height="80" viewBox="0 0 114 106" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M66.5 83.9167V22.0833H85.5V83.9167H66.5ZM28.5 83.9167V22.0833H47.5V83.9167H28.5Z" fill="#7F8330"/></svg>
@@ -25,9 +25,9 @@
           <img id="pomodoro" src="assets/tomato.png" alt="pomodoro timer">
         </div>
 
-        <div id="session-timer" class="flex-column">
-             <h1 id="session_name">Pomodoro</h1>   
-            <time id="session_timer"> 00 : 00</time>     
+        <div id="focus-timer" class="flex-column">
+             <h1 id="focus_name">Pomodoro</h1>   
+            <time id="focus_timer"> 25 : 00</time>     
         </div>
         
         <button id="start-btn">Start</button>
@@ -36,49 +36,69 @@
     <section id="timer_settings">
     <!-- Section,two divs?, top and bottom, 3 more spans?, article for time, img,  -->
     <div id="setting_overview" class="flex-row">
+                    <button class="settings-btn">Settings</button>
+
         <article id="date">
-            <h3>9:02 AM</h3>
-            <p>April 20, Mon</p>
+            <h3 id="real-time">9:02 AM</h3>
+            <p id="real-date">April 20, Mon</p>
         </article>
         <img src="/assets/apple.png" alt="apple">
         <p id="start-time">25:00</p>
     </div>
 
     <div id="setting_controls" class="flex-row">
-        <span class="flex-row">
+        <span class="flex-row" id="pomodoro_count">
             <h3>Pomodoros</h3>
-            <button>-</button>
-            <p>4</p>
-            <button>+</button>
+            <button class="minus-btn" id="minus-pomodoro">-</button>
+            <p id="pomodoro-count"></p>
+            <button class="plus-btn" id="plus-pomodoro">+</button>
         </span>
 
         <span class="flex-row">
-            <h3>Session length</h3>
-          <button>-</button>
+            <h3>Focus length</h3>
+          <button id="minus-focus">-</button>
             <div class="flex-row" style="flex-wrap: nowrap;">
               <p id="minuteInput">25</p>
               <p>:</p>
               <p id="secondInput">00</p>  
             </div>
-          <button>+</button>
+          <button id="plus-focus">+</button>
         </span>
 
         <span class="flex-row">
             <h3>Break length</h3>
-          <button>-</button>
+          <button id="minus-break">-</button>
             <div class="flex-row" style="flex-wrap: nowrap;">
               <p id="minuteInput_break">05</p>
               <p>:</p>
               <p id="secondInput_break">00</p>  
             </div>
-          <button>+</button>
+          <button id="plus-break">+</button>
         </span>
     </div>
 </section>
 
 </main>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="scripts/script.js"></script>
-    <script src="animations.js"></script>
+    <script src="scripts/controls.js" type="module"></script>
+    <script>
+      console.log("hello world");
+      console.log(Date.now());
+      let Daate = new Date();
+
+      const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+      const dayOfWeek = daysOfWeek[Daate.getUTCDay()];
+      const monthOfYear = monthsOfYear[Daate.getMonth()];
+
+      const fullDay = `${monthOfYear} ${Daate.getUTCDay()}, ${dayOfWeek}`;
+      const fullDate = `${Daate.getHours()}:${Daate.getMinutes()}AM`;
+
+      console.log(fullDay);
+
+      document.getElementById("real-time").innerText = fullDate;
+      document.getElementById("real-date").innerText = fullDay;
+      
+    </script>
 </body>
 </html>

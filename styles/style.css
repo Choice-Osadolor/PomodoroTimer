@@ -24,6 +24,7 @@ section{
     justify-content: center;
     align-items: center;
     align-self: center;
+
 }
 
 h1,h2,h3{
@@ -82,13 +83,13 @@ main{
     width: 100%;
 }
 
-#session-timer{
+#focus-timer{
     align-items: center;
     justify-content: space-evenly;
     text-align: center;
 }
 
-#session-timer time{
+#focus-timer time{
     background-color: #AA0000;
     color: white;
     width: 60%;
@@ -100,7 +101,7 @@ main{
     font-family: Delicious Handrawn;
 }
 
-#session_name{
+#focus_name{
     color: #70000E;
     font-size: 14vw;
     font-weight: lighter;
@@ -132,7 +133,7 @@ main{
     background-color: lightgray;
 }
 
-#session-timer,
+#focus-timer,
 #pomodoro-container{
     flex: 1 1 300px; /* THIS is the magic */
 }
@@ -196,7 +197,7 @@ main{
 #timer_settings{
     position: absolute;
     visibility: hidden;
-    height: 80vh;
+    height: 80%;
     width: 80%;
     border: white 10px solid;
     outline: black 3px solid;
@@ -206,6 +207,8 @@ main{
 
     justify-self: center;
     align-self: center;
+    top: 0%;
+    margin: 5%;
 }
 
 #timer_settings.active{
@@ -230,6 +233,11 @@ h3{
     background-color: #FEFAEE;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
+    flex-wrap: wrap;
+}
+
+#setting_overview img{
+    width: 30%;
 }
 
 #setting_controls{
@@ -252,6 +260,8 @@ h3{
 
     width: 30%;
     height: 70%;
+    min-width: 300px;
+    max-height: 150px;
 
     border: black 1px solid;
     border-radius: 50px;
@@ -278,7 +288,7 @@ margin: 0%;
 
 }
 #start-time{
-    font-size: 5em;
+    font-size: clamp(3em, 5em, 10em);
     background-color: white;
     border: black 4px solid;
     border-right: 0px solid;
@@ -286,6 +296,8 @@ margin: 0%;
     border-radius: 30px;
     border-top-right-radius: 0%;
     border-bottom-right-radius: 0%;
+
+    height: 30%;
     padding-left: 5%;
     padding-right: 5%;
 }
@@ -303,5 +315,23 @@ margin: 0%;
 /* Swap the order of elements */
 #pomodoro-container{
     order: 2;
+}
+#timer_settings{
+    height: 80%;
+    width: 80%;
+}
+
+#setting_overview{
+    /* height: 30%; */
+}
+
+#setting_controls{
+  height:50%;
+  overflow: scroll;
+}
+
+#start-time{
+    padding: 0%;
+    width: 100%;
 }
 }
