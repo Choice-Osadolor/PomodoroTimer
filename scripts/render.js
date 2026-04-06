@@ -32,7 +32,7 @@ export function updateDisplay(){
 export function incrementTimerSettings(type){
 
   switch(type) {
-    case 'session':
+    case 'focus':
       state.focusLength += 5;
       break;
     case 'break':
@@ -42,23 +42,39 @@ export function incrementTimerSettings(type){
       state.pomodoroMax ++;
       break;
   }
+
+  updateSettingsDisplay();
   saveState();
 }
 
 export function decrementTimerSettings(type){
 
   switch(type) {
-    case 'session':
-      state.focusLength -= 5;
+    case 'focus':
+      if(state.focusLength>0){
+              state.focusLength -= 5;
+      }
       break;
     case 'break':
+      if(state.breakLength>0){
       state.breakLength -= 5;
+      }
       break;
     case 'pomodoro':
+    if(state.pomodoroMax>0){
       state.pomodoroMax --;
+
+    }
       break;
   }
+  updateSettingsDisplay();
   saveState();
+}
+
+export function updateSettingsDisplay(){
+  document.getElementById('minuteInput').textContent = String(state.focusLength).padStart(2, '0');
+  document.getElementById('minuteInput_break').textContent = String(state.breakLength).padStart(2, '0');
+  document.getElementById('pomodoro-count').textContent = state.pomodoroMax;
 }
 
 //when i click on this button, check teh aprnets id, incremenet the state.time ,based on the id,  instead.

@@ -3,7 +3,7 @@ import {saveState, loadState} from './storage.js';
 export const state = {
     focusLength: 25,
     breakLength: 5,
-    longBreakLength: 10,
+    longBreakLength: 5,
 
     timeLeft: 25 * 60,
 

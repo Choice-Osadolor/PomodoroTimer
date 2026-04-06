@@ -1,6 +1,10 @@
 import {play,pause,restart,stop,start} from './timer.js';
-import { incrementTimerSettings , decrementTimerSettings} from './render.js';
+import { incrementTimerSettings , decrementTimerSettings, updateSettingsDisplay} from './render.js';
+import { state } from './state.js';
 
+// Initialize display on load
+updateSettingsDisplay();
+  
 console.log('pls work')
 //Onclick functions for buttons
 const startBtn=document.getElementById('start-btn');
@@ -25,20 +29,26 @@ pauseBtn.addEventListener('click',pause);
 const playBtn=document.getElementById('play-btn');
 playBtn.addEventListener('click',play);
 // Increment buttons
-document.getElementById('plus-focus').addEventListener('click', () => incrementTimerSettings('session'));
+document.getElementById('plus-focus').addEventListener('click', () => incrementTimerSettings('focus'));
 document.getElementById('plus-break').addEventListener('click', () => incrementTimerSettings('break'));
 document.getElementById('plus-pomodoro').addEventListener('click', () => incrementTimerSettings('pomodoro'));
 
 // Decrement buttons
-document.getElementById('minus-focus').addEventListener('click', () => decrementTimerSettings('session'));
+document.getElementById('minus-focus').addEventListener('click', () => decrementTimerSettings('focus'));
 document.getElementById('minus-break').addEventListener('click', () => decrementTimerSettings('break'));
 document.getElementById('minus-pomodoro').addEventListener('click', () => decrementTimerSettings('pomodoro'));
 
 const restartBtn=document.getElementById('restart-btn');
 restartBtn.addEventListener('click',restart);
 
+
+const themesBtn= document.getElementById('themes-btn');
+themesBtn.addEventListener('click',()=>{
+    document.querySelector('#themes_container').classList.toggle('active');
+})
+
+
 const stopBtn=document.getElementById('stop-btn');
 stopBtn.addEventListener('click',stop);
-
 
 

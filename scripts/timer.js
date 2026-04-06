@@ -77,7 +77,7 @@ export function pomodoro(){
   if(state.mode === 'focus'){// POMODORO FOCUS FINISH
       state.pomodoroCount++;
 
-      if(state.pomodoroCount===4){// 3 Pomodoros= 1 focus session, this is when we naturally finish a focus session 
+      if(state.pomodoroCount===state.pomodoroMax){// 3 Pomodoros= 1 focus session, this is when we naturally finish a focus session 
         stop();
         alert('focus session is over, well done!!');
         state.pomodoroCount=0;
