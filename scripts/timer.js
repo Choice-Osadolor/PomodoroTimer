@@ -45,6 +45,7 @@ export function restart(){
   updateDisplay();
   toggleicons('pause');
   currentTimer = setInterval(pomodoro, 1000);
+  document.getElementById('start-btn').style.display='none';
 }
 
 export function start(){
@@ -79,7 +80,7 @@ export function pomodoro(){
 
       if(state.pomodoroCount===state.pomodoroMax){// 3 Pomodoros= 1 focus session, this is when we naturally finish a focus session 
         stop();
-        alert('focus session is over, well done!!');
+        showFocusEndImage();
         state.pomodoroCount=0;
         return;
      }
@@ -110,4 +111,23 @@ if(!state.isPaused){//if timer is running...countdown, then update display,
 
 }
 
+function showFocusEndImage(){
+  const overlay = document.getElementById('focus-end-overlay');
+  if (!overlay) return;
+  overlay.classList.add('show');
+  clearTimeout(overlay.hideTimeout);
+  overlay.hideTimeout = setTimeout(() => {
+    overlay.classList.remove('show');
+  }, 5000);
+}
+
 // Notification moved to top
+// //Making it permananet. . use actual time
+
+// const started_at=Date.now;
+// let elapsedTime = Date.now() - startedAt;
+// state.timeLeft=end_at-Date.now
+
+// //When timer starts, compute time started, and the end time an duration of timer
+// const end_at = Date.now() + durationMs
+// const durationMs=(state.focusLength*60)+(state.breakLength*60*1000);//timer is in milliseconds so we add *1000 to convert from seconds to milliseconds

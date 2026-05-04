@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro</title>
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="animations.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="styles/animations.css">
 
 <link rel="icon" type="image/png" href="assets/tomato.png">
 </head>
@@ -15,17 +14,18 @@
 
         <section id="mainDisplay" class="flex-row">
           <nav class="flex-row">
-             <button id="themes-btn">Themes</button>
-             <button id="tasks-btn">Tasks</button>
-              <button class="settings-btn"> Timer Settings</button>
 
-              <button id="restart-btn">Restart</button>
-              <svg class="icons"  id="play-btn" class="icons" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 20 20"><path fill="#7F8330" d="M4.55 19A1 1 0 0 1 3 18.13V1.87A1 1 0 0 1 4.55 1l12.2 8.13a1 1 0 0 1 0 1.7z"/></svg> -->
+<span class="feature-icon" id="tasks-btn"><img src="assets/icons/task.png" alt="tasks Icon"></span>
+<span  class="feature-icon" id="settings-btn"><img src="assets/icons/timer.png" alt="timer Icon"></span>
+<span  class="feature-icon" id="themes-btn"><img src="assets/icons/paint.png" alt="Paint Icon"></span>
+
+              <svg id="restart-btn" width="60" height="60" viewBox="0 0 128 113" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.5322 80.6762L9.91468 83.4336L9.91468 83.4336L14.5322 80.6762ZM12.7524 77.7158L17.3699 74.9583V74.9583L12.7524 77.7158ZM92.6403 38.5628L97.8247 37.0633V37.0633L92.6403 38.5628ZM97.3254 66.1574C100.007 67.6584 103.289 66.709 104.657 64.0369L126.949 20.4926C128.317 17.8205 127.252 14.4375 124.571 12.9366C121.89 11.4356 118.607 12.385 117.239 15.0571L97.4242 53.7632L58.5848 32.0216C55.9035 30.5206 52.6209 31.47 51.253 34.1421C49.885 36.8142 50.9497 40.1972 53.631 41.6981L97.3254 66.1574ZM98.5887 87.2097L94.1935 83.7517L94.1935 83.7517L98.5887 87.2097ZM6.8412 39.9928L12.1328 41.5366V41.5366L6.8412 39.9928ZM7.28001 38.2013L1.98842 36.6575V36.6575L7.28001 38.2013ZM35.6732 7.55553L33.8662 2.25066L33.8662 2.25065L35.6732 7.55553ZM45.6722 104.743L44.3936 110.081L45.6722 104.743ZM14.5322 80.6762L19.1498 77.9187L17.3699 74.9583L12.7524 77.7158L8.13478 80.4733L9.91468 83.4336L14.5322 80.6762ZM92.6403 38.5628L87.4559 40.0622L94.6179 62.8186L99.8023 61.3192L104.987 59.8197L97.8247 37.0633L92.6403 38.5628ZM102.064 82.5295L97.6691 79.0714L94.1935 83.7517L98.5887 87.2097L102.984 90.6678L106.459 85.9875L102.064 82.5295ZM6.8412 39.9928L12.1328 41.5366L12.5716 39.7451L7.28001 38.2013L1.98842 36.6575L1.54962 38.449L6.8412 39.9928ZM7.28001 38.2013L12.5716 39.7451C15.7189 26.8953 25.0842 16.7871 37.4802 12.8604L35.6732 7.55553L33.8662 2.25065C18.0019 7.27596 6.01633 20.2124 1.98842 36.6575L7.28001 38.2013ZM98.5887 87.2097L94.1935 83.7517C83.3708 98.3257 64.7419 104.498 46.9509 99.405L45.6722 104.743L44.3936 110.081C66.4579 116.398 89.5616 108.742 102.984 90.6678L98.5887 87.2097ZM92.6403 38.5628L97.8247 37.0633C89.1825 9.60397 60.2932 -6.12054 33.8662 2.25066L35.6732 7.55553L37.4802 12.8604C58.1296 6.31932 80.7031 18.6061 87.4559 40.0622L92.6403 38.5628ZM14.5322 80.6762L9.91468 83.4336C17.7255 96.4248 30.1009 105.989 44.3936 110.081L45.6722 104.743L46.9509 99.405C35.4264 96.1057 25.4479 88.3937 19.1498 77.9187L14.5322 80.6762ZM12.7524 77.7158L17.3699 74.9583C11.274 64.8195 9.38414 52.7588 12.1328 41.5366L6.8412 39.9928L1.54962 38.449C-1.90653 52.5596 0.469831 67.7247 8.13479 80.4733L12.7524 77.7158Z" fill="#7F8330"/></svg>
+              <svg class="icons"  id="play-btn" class="icons" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 20 20"><path fill="#7F8330" d="M4.55 19A1 1 0 0 1 3 18.13V1.87A1 1 0 0 1 4.55 1l12.2 8.13a1 1 0 0 1 0 1.7z"/></svg>
               <svg class="icons" id="pause-btn" class="icons" width="80" height="80" viewBox="0 0 114 106" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M66.5 83.9167V22.0833H85.5V83.9167H66.5ZM28.5 83.9167V22.0833H47.5V83.9167H28.5Z" fill="#7F8330"/></svg>
           </nav>
 
         <div  id="pomodoro-container" class="flex-column">
-          <img id="pomodoro" src="assets/tomato.png" alt="pomodoro timer">
+          <img id="pomodoro" src="" alt="pomodoro timer">
         </div>
 
         <div id="focus-timer" class="flex-column">
@@ -44,7 +44,7 @@
                 <a href="/menu.html" style="color: white;">i</a>
             </article>
             <img src="/assets/apple.png" alt="apple">
-            <button> <img  src="/assets/timer.png" alt=""></button>
+            <button id="theme-applebtn"> <img  src="/assets/timer.png" alt=""></button>
         </div>
 
         <div class="theme" style="background-color: #EAFAFF;">
@@ -53,7 +53,7 @@
                 <a href="/menu.html" style="color: black;">i</a>
             </article>
             <img src="/assets/lemon.png" alt="lemon">
-            <button> <img  src="/assets/timer.png" alt=""></button>
+            <button id="theme-lemonbtn"> <img  src="/assets/timer.png" alt=""></button>
         </div>
 
         <div class="theme" style="background-color: #7F8330;">
@@ -62,7 +62,7 @@
                 <a href="/menu.html" style="color: white;">i</a>
             </article>
             <img src="/assets/tomato.png" alt="tomato">
-            <button onclick="window.location.href='/pages/components.html?theme=classic'"> <img  src="/assets/timer.png" alt=""></button>
+            <button id="theme-defaultbtn"> <img  src="/assets/timer.png" alt=""></button>
         </div>
 
 
@@ -113,7 +113,24 @@
     </div>
 </section>
 
+<div id="focus-end-overlay" class="focus-end-overlay">
+  <img src="assets/image.png" alt="Focus completed">
+</div>
 
+<section id="tasks-container">
+  <div id="tasks_top">
+
+  </div>
+  <div id="tasks_bottom">
+  <input type="text" id="task-input" placeholder="+Add Task">
+  <button id="addTask-btn">+</button>
+  <ol id="tasklist" >
+
+  </ol>
+  </div>
+
+
+</section>
 
 </main>
     <script src="scripts/controls.js" type="module"></script>
