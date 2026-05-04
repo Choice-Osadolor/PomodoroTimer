@@ -75,7 +75,21 @@ export function updateSettingsDisplay(){
   document.getElementById('minuteInput').textContent = String(state.focusLength).padStart(2, '0');
   document.getElementById('minuteInput_break').textContent = String(state.breakLength).padStart(2, '0');
   document.getElementById('pomodoro-count').textContent = state.pomodoroMax;
+  document.getElementById('start-time').textContent=String(state.focusLength).padStart(2, '0')+':00';
 }
+
+                                                                            //ANimation- Frame by Frame handling
+export function updatePomodoroImage() {
+  const img = document.getElementById('pomodoro');
+  const current = themes[state.currentTheme];
+
+  if (!img || !current || !current.frames?.length) return;
+
+  const index = state.currentFrameIndex % current.frames.length;
+  img.src = current.frames[index];
+}
+
+
 
 //when i click on this button, check teh aprnets id, incremenet the state.time ,based on the id,  instead.
 

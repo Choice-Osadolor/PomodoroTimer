@@ -1,14 +1,19 @@
 import {play,pause,restart,stop,start} from './timer.js';
-import { incrementTimerSettings , decrementTimerSettings, updateSettingsDisplay} from './render.js';
+import { incrementTimerSettings , decrementTimerSettings, updateSettingsDisplay, updatePomodoroImage} from './render.js';
 import { state , themes} from './state.js';
 import { saveState, loadState } from './storage.js';
+
+console.log('contols loaded');
+
 
 const persistedState = loadState(); 
 
 if (persistedState) {
   Object.assign(state, persistedState);
 }
-console.log('Loaded state:', loadState());
+
+console.log("persisted:", persistedState);
+console.log('loaded state:'+state)
 
 // Initialize display on load
 updateSettingsDisplay();
@@ -22,14 +27,11 @@ startBtn.addEventListener('click',function(){
   console.log('start');
 });
 
-const settingsBtn=document.querySelectorAll('.settings-btn');
-settingsBtn.forEach((btn)=>{
-    btn.addEventListener('click',()=>{
-  const settingsContainer=document.getElementById('timer_settings');
+const navSettingsBtn = document.getElementById('settings-btn');
+navSettingsBtn.addEventListener('click', () => {
+  const settingsContainer = document.getElementById('timer_settings');
   settingsContainer.classList.toggle('active');
 });
-
-})
 
 function addTask(){
     //Onlcikc, add a task and renderall takss
@@ -110,12 +112,15 @@ function applyTheme(themeName){
   //save to state, fetch from state, in a fcntion if curet yheme==themname apply theme, else do nothing
   if (state.currentTheme === themeName) return;
   if (!themes[themeName]) return;
-  state.currentTheme=themeName;
+  state.currentTheme = themeName;
+  state.currentFrameIndex = 0;
   saveState(state);
   
   const theme = themes[themeName];
   document.documentElement.setAttribute('data-theme', themeName);
-  document.getElementById('pomodoro').src = theme.frames[state.currentFrameIndex];
+  document.getElementById('pomodoro').src = theme.frames[0];
+  document.getElementById('pomodoro-mini').src = theme.frames[0];
+
 
 }
 
@@ -123,13 +128,18 @@ function applyTheme(themeName){
 function switchTheme(themeName) {
   applyTheme(themeName);
 }
-
+                                                                          //ON WINDOW LOAD
 
 document.addEventListener('DOMContentLoaded', () => {
   applyTheme(state.currentTheme || 'default');
-    document.documentElement.setAttribute('data-theme', state.currentTheme);
-    const current=themes[state.currentTheme];
-    document.getElementById('pomodoro').src = current.frames[state.currentFrameIndex];
+  document.documentElement.setAttribute('data-theme', state.currentTheme);
+
+  const current = themes[state.currentTheme];
+  if (current && current.frames?.length) {
+    document.getElementById('pomodoro').src = current.frames[0];
+    const mini = document.getElementById('pomodoro-mini');
+    if (mini) mini.src = current.frames[0];
+  }
 
 });
 renderTasks();
@@ -205,4 +215,18 @@ themeDefaultBtn.addEventListener('click', () => {
 
 
 const stopBtn=document.getElementById('stop-btn');
-stopBtn.addEventListener('click',stop);
+if (stopBtn) {
+  stopBtn.addEventListener('click', stop);
+}
+
+// Close buttons
+const closeButtons = document.querySelectorAll('.close');
+
+closeButtons.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const section = btn.closest('section');
+    if (section) {
+      section.classList.remove('active');
+    }
+  });
+});

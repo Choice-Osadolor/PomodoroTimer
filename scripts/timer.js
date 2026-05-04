@@ -1,6 +1,6 @@
 import{state} from './state.js';
 import {saveState, loadState} from './storage.js';
-import {toggleicons,updateDisplay} from './render.js';
+import {toggleicons,updateDisplay,updatePomodoroImage} from './render.js';
 
 let currentTimer;
 
@@ -77,6 +77,8 @@ export function pomodoro(){
     
   if(state.mode === 'focus'){// POMODORO FOCUS FINISH
       state.pomodoroCount++;
+      updatePomodoroImage();
+     saveState(state);
 
       if(state.pomodoroCount===state.pomodoroMax){// 3 Pomodoros= 1 focus session, this is when we naturally finish a focus session 
         stop();
@@ -96,7 +98,7 @@ export function pomodoro(){
     }else{
       state.mode='focus';
       state.timeLeft=state.focusLength*60;
-      saveState();    
+      saveState(state);    
     }
     
     updateDisplay();
@@ -107,6 +109,7 @@ export function pomodoro(){
 if(!state.isPaused){//if timer is running...countdown, then update display, 
   state.timeLeft--;
   updateDisplay();
+  updatePomodoroImage(); // Update animation frame during countdown
 }
 
 }

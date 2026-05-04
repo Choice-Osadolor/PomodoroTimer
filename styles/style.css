@@ -150,7 +150,7 @@ main{
     border: none;
     width: 20%;
     height: 30%;
-    margin: 3%;
+    margin: 0%;
     text-align: center;
     font-size: 4vw;
     padding: 2%;
@@ -234,6 +234,7 @@ main{
 
 #themes_container{
     background-color: #FFFFDD;
+    color: black;
     height: 0%;
     width: 100%;
     position: absolute;
@@ -325,6 +326,7 @@ width: 100%;
 #tasks-container{
     position: absolute;
     visibility: hidden;
+    color: black;
     height: 80%;
     width: 80%;
     border: white 10px solid;
@@ -430,7 +432,20 @@ margin: 0%;
     padding-left: 5%;
     padding-right: 5%;
 }
+.close{
+    background-color: transparent;
+    width: max-content;
+    height: max-content;
+    position: absolute;
+    border: none;
+    top: 4%;
+    right: 5%;
+    z-index: 2;
+}
 
+.close h1{
+    font-size: xx-large;
+}
 
 
 
@@ -449,6 +464,17 @@ margin: 0%;
     height: 80%;
     width: 80%;
 }
+#start-btn{
+    margin: 4%;
+
+
+}
+
+#mainDisplay{
+    gap: 2rem;
+
+}
+
 
 /* #setting_overview{
     height: 30%;
