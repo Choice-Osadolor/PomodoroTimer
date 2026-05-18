@@ -141,24 +141,18 @@
 </main>
     <script src="scripts/controls.js" type="module"></script>
     <script>
-      console.log("hello world");
-      console.log(Date.now());
+      setInterval(realTime ,1000);
+function realTime() {
       let Daate = new Date();
 
-      const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-      const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-      const dayOfWeek = daysOfWeek[Daate.getUTCDay()];
-      const monthOfYear = monthsOfYear[Daate.getMonth()];
-
-      const fullDay = `${monthOfYear} ${Daate.getUTCDay()}, ${dayOfWeek}`;
-      const fullDate = `${Daate.getHours()}:${Daate.getMinutes()}AM`;
-
-      console.log(fullDay);
+      const fullDay = Daate.toDateString();
+      const fullDate = Daate.toLocaleTimeString();
 
       document.getElementById("real-time").innerText = fullDate;
       document.getElementById("real-date").innerText = fullDay;
-      
+}
+
+console.log(Date.now().toString);
     </script>
 </body>
 </html>

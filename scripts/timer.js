@@ -71,26 +71,22 @@ currentTimer=setInterval(pomodoro,1000);
 
 export function pomodoro(){
 
+  
   if(state.timeLeft <= 0){
     alert_sound.currentTime=0;
+
     alert_sound.play();
-    
-  if(state.mode === 'focus'){// POMODORO FOCUS FINISH
+  if(state.mode ==="focus"){// POMODORO FOCUS FINISH
       state.pomodoroCount++;
-      updatePomodoroImage();
+      // updatePomodoroImage();
      saveState(state);
 
       if(state.pomodoroCount===state.pomodoroMax){// 3 Pomodoros= 1 focus session, this is when we naturally finish a focus session 
         stop();
-        showFocusEndImage();
+        // showFocusEndImage();
         state.pomodoroCount=0;
         return;
-     }
-  
-      if(state.pomodoroCount==2){// LONG BREAK// normal break=5 mins, If we are one 3rd pomodoro, break=10 mins
-        state.timeLeft=state.longBreakLength*60;
-        state.mode='long-break';
-      }else{
+     }else{
       state.timeLeft=state.breakLength*60;
       state.mode='break';
     }
